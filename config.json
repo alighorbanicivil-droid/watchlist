@@ -1,0 +1,6 @@
+{
+  "channels": ["FocusWatchList"],
+  "days": 90,
+  "maxPages": 120,
+  "prices": true
+}
