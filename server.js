@@ -6,8 +6,9 @@ const { parseChannels } = require('./lib/channel');
 const { buildFromChannels } = require('./lib/snapshot');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC = path.join(__dirname, 'docs');
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
+const PUBLIC = __dirname;
+const ALLOWED = new Set(['/index.html', '/app.js', '/scoring.js', '/jalali.js', '/merge.js', '/sw.js', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/icon-maskable-512.png', '/apple-touch-icon.png']);
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json; charset=utf-8' };
 
 // محدودیت ساده‌ی درخواست برای هر IP (۱۵ درخواست در دقیقه)
 const hits = new Map();
@@ -45,7 +46,7 @@ const server = http.createServer(async (req, res) => {
   // فایل‌های استاتیک
   let p = url.pathname === '/' ? '/index.html' : decodeURIComponent(url.pathname);
   const file = path.normalize(path.join(PUBLIC, p));
-  if (!file.startsWith(PUBLIC)) return send(res, 403, 'Forbidden', 'text/plain');
+  if (!file.startsWith(PUBLIC) || !(ALLOWED.has(p) || p.startsWith('/data/'))) return send(res, 404, 'Not found', 'text/plain');
   fs.readFile(file, (err, buf) => {
     if (err) return send(res, 404, 'Not found', 'text/plain');
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });

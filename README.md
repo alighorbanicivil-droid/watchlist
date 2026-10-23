@@ -16,20 +16,25 @@
 ## اجرا روی کامپیوتر
 ```bash
 npm start          # http://localhost:3000  (دکمه‌ی «دریافت اکنون» فقط با سرور کار می‌کند)
-npm run update     # یک بار دیتا را از کانال‌های config.json بگیر و docs/data را بنویس
+npm run update     # یک بار دیتا را از کانال‌های config.json بگیر و data را بنویس
 npm test           # تست‌ها
 ```
 
-## انتشار خودکار روی GitHub
-1. پوشه را در یک ریپوی GitHub (شاخه‌ی `main`) بگذار.
-2. Settings ⇠ Pages ⇠ Source را روی **GitHub Actions** بگذار.
-3. `config.json` را با کانال‌ها و تعداد روزهای بازه تنظیم کن:
+## انتشار روی GitHub (ساختار root)
+1. یک ریپوی **Public** بساز و **محتویات** این پوشه را (از جمله `.github` و `.nojekyll`) در ریشه‌ی شاخه‌ی `main` آپلود کن.
+2. Settings ⇠ Pages ⇠ Source = **Deploy from a branch** ⇠ Branch = `main` و پوشه = **`/ (root)`** ⇠ Save.
+3. Settings ⇠ Actions ⇠ General ⇠ Workflow permissions = **Read and write permissions** ⇠ Save.
+4. `config.json` را با کانال‌ها و تعداد روزهای بازه تنظیم کن:
    ```json
    { "channels": ["FocusWatchList", "کانال_دوم"], "days": 90, "maxPages": 120, "prices": true }
    ```
-4. تب Actions ⇠ `update-and-deploy` ⇠ Run workflow. از آن به بعد هر روز حدود ۰۸:۰۰ تهران داده گرفته، در ریپو ذخیره (`docs/data/latest.json` و `docs/data/history/*.json`) و سایت منتشر می‌شود.
+5. تب Actions ⇠ `update-data` ⇠ Run workflow. از آن به بعد هر روز حدود ۰۸:۰۰ تهران داده گرفته و در `data/` ذخیره می‌شود.
+6. آدرس سایت: `https://USERNAME.github.io/REPO/`
 
 `days` را بزرگ‌تر کنی باید `maxPages` را هم بیشتر کنی (هر صفحه حدود ۲۰ پست)؛ اگر به سقف برسد هشدار چاپ می‌شود. بدون تاریخ‌های «بازه»، داده‌ی نمونه‌ی اولیه (بدون تاریخ گزارش) نمایش داده می‌شود و با انتخاب بازه کنار می‌رود.
+
+## نصب به‌عنوان اپ (PWA)
+سایت manifest، آیکون و service worker دارد و روی HTTPS (مثل GitHub Pages) قابل نصب است. روی اندروید در **Chrome** منوی ⋮ ⇠ «Install app» یا «Add to Home screen»؛ روی آیفون در **Safari** دکمه‌ی Share ⇠ «Add to Home Screen». داخل مرورگر تلگرام/اینستاگرام گزینه‌ی نصب نیست؛ لینک را در Chrome یا Safari باز کن. بعد از نصب، آخرین داده‌ی دیده‌شده آفلاین هم نمایش داده می‌شود. نصب با `http://` معمولی (غیر از localhost) ممکن نیست.
 
 ## قیمت فعلی؛ مهم
 `lib/prices.js` قیمت را از TSETMC (نسخه‌ی قدیمی) می‌گیرد، ولی:
@@ -38,12 +43,14 @@ npm test           # تست‌ها
 - راه‌حل: `npm run update` را روی کامپیوتر/سروری که به TSETMC دسترسی دارد اجرا کن، یا `fetchOne` را در همین فایل با منبع دلخواه عوض کن. خاموش‌کردن: `PRICE_SOURCE=off`.
 
 ## ساختار
-- `docs/` رابط کاربری (برای GitHub Pages) + `docs/data/` داده‌ی تولیدشده
-- `docs/scoring.js` امتیازدهی و دلیل رتبه (هم در مرورگر، هم در Node)
-- `docs/jalali.js` تبدیل تاریخ شمسی
-- `docs/merge.js` فیلتر بازه، انتخاب جدیدترین گزارش هر نماد و شمارش کانال‌های تأییدکننده (مشترک بین سرور و مرورگر)
+- `index.html`, `app.js` رابط کاربری (همان چیزی که Pages نشان می‌دهد) و `data/` داده‌ی تولیدشده
+- `scoring.js` امتیازدهی و دلیل رتبه (هم در مرورگر، هم در Node)
+- `jalali.js` تبدیل تاریخ شمسی
+- `manifest.webmanifest`, `sw.js`, `icon-*.png` برای نصب به‌عنوان اپ
+- `merge.js` فیلتر بازه، انتخاب جدیدترین گزارش هر نماد و شمارش کانال‌های تأییدکننده (مشترک بین سرور و مرورگر)
 - `lib/` پارسر پست‌ها، دریافت چندکانال، ادغام، قیمت، نقشه‌ی صنعت (`industries.js` را ویرایش کن)
 - `scripts/update.js` به‌روزرسانی خودکار؛ `.github/workflows/update.yml` زمان‌بندی
+- `server.js` سرور محلی (`npm start`)؛ فقط فایل‌های رابط و `data/` را سرو می‌کند
 - `test/` تست‌ها، از جمله با متن پست‌های واقعی کانال
 
 ## محدودیت‌ها

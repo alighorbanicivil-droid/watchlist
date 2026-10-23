@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نمادهای برتر هر صنعت</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نمادهای بورس">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1a1d21;--muted:#6b7280;--line:#e4e7ec;--accent:#0f766e;--accent-t:#fff;--good:#15803d;--bad:#b91c1c;--warn:#b45309;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1b1f25;--text:#eceef1;--muted:#9aa3af;--line:#2b313a;--accent:#2dd4bf;--accent-t:#06231f;--good:#4ade80;--bad:#f87171;--warn:#fbbf24;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1b1f25;--text:#eceef1;--muted:#9aa3af;--line:#2b313a;--accent:#2dd4bf;--accent-t:#06231f;--good:#4ade80;--bad:#f87171;--warn:#fbbf24;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,"Segoe UI",sans-serif;line-height:1.8}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.2rem;margin:6px 0 2px}
+.sub{color:var(--muted);font-size:.8rem;margin:0 0 8px}
+input[type=text],textarea,select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);max-width:100%}
+textarea{width:100%;direction:ltr;text-align:left;resize:vertical}
+.row{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}
+.pk{display:inline-flex;gap:4px}
+button{font:inherit;border:0;border-radius:10px;padding:8px 16px;background:var(--accent);color:var(--accent-t);font-weight:700;cursor:pointer}
+button:disabled{opacity:.5}
+button.ghost,.chip,.tabs button{background:var(--card);color:var(--text);border:1px solid var(--line);font-weight:400}
+.chip,.tabs button{border-radius:99px;padding:3px 12px;font-size:.84rem}
+.tabs{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap;align-items:center}
+.tabs button.on,.chip.on{background:var(--accent);color:var(--accent-t);border-color:var(--accent)}
+.tabs .sp{margin-inline-start:auto}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.lbl{color:var(--muted);font-size:.78rem;margin-top:8px}
+#st{font-size:.8rem;color:var(--muted)}.err{color:var(--bad)!important}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:8px 0;font-size:.88rem}
+summary{cursor:pointer;color:var(--muted)}
+.w{display:flex;align-items:center;gap:8px;margin:4px 0}.w span{min-width:110px}.w input{flex:1;accent-color:var(--accent)}.w b{min-width:26px;text-align:left}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:8px 0;cursor:pointer}
+.top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rank{min-width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-t);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.sym{font-weight:700;font-size:1.05rem}.sc{margin-inline-start:auto;font-weight:700;color:var(--accent)}
+.why{font-size:.8rem;color:var(--muted);margin:2px 0}
+.bar{height:5px;background:var(--line);border-radius:3px;margin:6px 0;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:.8rem}.grid span{display:block;color:var(--muted);font-size:.7rem}
+.prc{display:flex;gap:12px;flex-wrap:wrap;font-size:.78rem;margin-top:6px;color:var(--muted)}
+.up{color:var(--good)}.dn{color:var(--bad)}
+.tag{display:inline-block;font-size:.68rem;padding:0 7px;border-radius:99px;border:1px solid var(--warn);color:var(--warn)}
+.tag.r{border-color:var(--bad);color:var(--bad)}.tag.g{border-color:var(--good);color:var(--good)}
+.det{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:.86rem}.card.open .det{display:block}
+.det ul{margin:4px 0;padding-inline-start:18px}
+.ck{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 12px;margin:5px 0;font-size:.9rem}
+.ck input{margin-top:6px;accent-color:var(--accent)}.ck.done{opacity:.5}
+.gh{display:flex;align-items:center;gap:8px;margin-top:12px;font-weight:700;font-size:.9rem}.gh button{padding:0 8px;font-size:.75rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}
+.br{display:grid;grid-template-columns:110px 1fr 56px;gap:8px;align-items:center;font-size:.82rem;margin:4px 0}
+.br .t{height:12px;background:var(--line);border-radius:6px;position:relative;overflow:hidden}
+.br .t i{position:absolute;top:0;bottom:0;border-radius:6px;background:linear-gradient(90deg,var(--accent),#38bdf8)}
+.br .t i.n{background:linear-gradient(90deg,#f87171,var(--bad))}.br .t u{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--muted)}
+.note{color:var(--muted);font-size:.76rem;margin-top:16px;border-top:1px solid var(--line);padding-top:8px}
+.hide{display:none}
+/* ---- گزارش PDF ---- */
+#report{display:none;font-size:11px;color:#111;background:#fff;direction:rtl}
+#report .rp-h{background:linear-gradient(120deg,#0f766e,#164e63);color:#fff;border-radius:14px;padding:18px 20px;margin-bottom:12px}
+#report .rp-h h2{margin:0;font-size:22px}#report .rp-h p{margin:4px 0 0;opacity:.9}
+#report .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+#report .kpi{border:1px solid #d6e4e2;background:#f1f8f7;border-radius:10px;padding:8px;text-align:center}#report .kpi b{display:block;font-size:18px;color:#0f766e}
+#report .rp-ind{break-inside:avoid;margin:12px 0}
+#report .rp-ih{background:#0f766e;color:#fff;border-radius:8px 8px 0 0;padding:5px 10px;font-weight:700;display:flex;justify-content:space-between}
+#report table{width:100%;border-collapse:collapse}
+#report td,#report th{border-bottom:1px solid #e5e7eb;padding:3px 5px;text-align:right;vertical-align:middle}
+#report th{background:#eef6f5;font-size:10px}
+#report tr.rs td{color:#555;font-size:10px;border-bottom:1px solid #cbd5d4}
+#report .sb{display:inline-block;width:60px;height:7px;background:#e5e7eb;border-radius:4px;vertical-align:middle;margin-inline-start:4px}#report .sb i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#0f766e,#38bdf8)}
+#report .br{grid-template-columns:100px 1fr 40px;margin:3px 0}#report .br .t{background:#e5e7eb}
+#report .tg{font-size:9px;border:1px solid #b45309;color:#b45309;border-radius:6px;padding:0 4px;margin-inline-start:3px}#report .tg.r{border-color:#b91c1c;color:#b91c1c}
+#report .ft{margin-top:14px;padding-top:8px;border-top:1px solid #ccc;color:#666;font-size:9.5px}
+@media print{
+ @page{size:A4;margin:10mm}
+ html,body{background:#fff!important;color:#111!important}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ main>*:not(#report){display:none!important}
+ #report{display:block}
+}
+</style>
+</head>
+<body>
+<main>
+<h1>🏆 نمادهای برتر هر صنعت</h1>
+<p class="sub" id="meta"></p>
+
+<details id="src" open>
+  <summary>منبع داده و بازه‌ی زمانی</summary>
+  <p class="sub">نمادهایی که گزارششان در بازه‌ی انتخابی منتشر شده رتبه‌بندی می‌شوند؛ تعداد نماد هر صنعت محدود نیست. با عوض‌کردن تاریخ‌ها نتیجه فوراً به‌روز می‌شود.</p>
+  <div class="lbl">کانال‌ها (هرکدام در یک خط یا با ویرگول جدا شود؛ حداکثر ۵ کانال)</div>
+  <textarea id="chs" rows="2" placeholder="https://t.me/FocusWatchList">https://t.me/FocusWatchList</textarea>
+  <div class="row"><span>از تاریخ</span><span class="pk" id="pfrom"></span><span>تا تاریخ</span><span class="pk" id="pto"></span></div>
+  <div class="row"><button class="chip" data-d="7">۷ روز</button><button class="chip" data-d="30">۳۰ روز</button><button class="chip" data-d="90">۹۰ روز</button><button class="chip" data-d="0">همه‌ی داده</button></div>
+  <div class="row"><button id="go">دریافت اکنون</button><span id="st"></span></div>
+  <p class="sub">«دریافت اکنون» فقط وقتی کار می‌کند که برنامه با سرور (<code>npm start</code>) اجرا شود. روی GitHub Pages داده هر روز خودکار به‌روز می‌شود.</p>
+</details>
+
+<div class="tabs"><button class="on" data-t="list">رتبه‌بندی</button><button data-t="ck">چک‌لیست</button><button data-t="perf">سابقه عملکرد</button><button class="sp ghost" id="pdf">📄 خروجی PDF</button></div>
+
+<section id="list">
+  <div class="chips" id="inds"></div>
+  <details><summary>تنظیم وزن معیارها</summary><div id="ws"></div></details>
+  <div id="cards"></div>
+</section>
+
+<section id="ck" class="hide">
+  <div class="lbl">صنعت</div><div class="chips" id="cinds"></div>
+  <div class="panel">
+    <div class="row"><select id="lib" aria-label="کتابخانه تکنیک‌ها"></select><button id="addt">افزودن به چک‌لیست</button></div>
+    <div id="newbox" class="hide">
+      <input type="text" id="nname" placeholder="نام چک‌لیست جدید" style="width:100%">
+      <textarea id="nitems" rows="4" style="direction:rtl;text-align:right;margin-top:6px" placeholder="هر مورد در یک خط"></textarea>
+      <div class="row"><button id="savenew">ذخیره و افزودن</button></div>
+    </div>
+    <div id="tdesc" class="sub"></div>
+  </div>
+  <div class="row"><button class="ghost" id="all">✅ انتخاب همه</button><button class="ghost" id="none">برداشتن همه</button><span id="prog" class="sub"></span></div>
+  <div id="cklist"></div>
+</section>
+
+<section id="perf" class="hide">
+  <div class="row"><span>مقایسه از</span><select id="base"></select><span>تا آخرین داده</span></div>
+  <div id="perfout"></div>
+</section>
+
+<div id="report"></div>
+<p class="note">فقط نمادهای مطرح‌شده در کانال(ها) بررسی می‌شوند، نه کل بازار. P/E سالانه‌شده = قیمت ÷ (سود دوره × ۲ برای ۶ ماهه، ۴/۳ برای ۹ ماهه) و با میانه‌ی P/E همان صنعت مقایسه می‌شود. «تأیید کانال» یعنی کانال گزارش مالی آن نماد را منتشر یا آن را با هشتگ ذکر کرده؛ به‌معنی توصیه‌ی خرید نیست. امتیاز توصیه مالی نیست؛ با کدال تطبیق بده.</p>
+</main>
+<script src="jalali.js"></script>
+<script src="scoring.js"></script>
+<script src="merge.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
